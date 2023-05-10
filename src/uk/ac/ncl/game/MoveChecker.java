@@ -36,10 +36,10 @@ public class MoveChecker {
         ArrayList<Cell> potentialMoves = findPotentialMoves(cellStatus);
         Cell opponentsMove = null;
         for (Cell cell : potentialMoves){
-                opponentsMove = opponentsMove == null
-                        && cell.getMove().getScore() > opponentsMove.getMove().getScore()
-                        ? cell
-                        : opponentsMove;
+               if (opponentsMove == null
+                        || cell.getMove().getScore() > opponentsMove.getMove().getScore()) {
+                   opponentsMove = cell;
+               }
         }
         return opponentsMove;
     }

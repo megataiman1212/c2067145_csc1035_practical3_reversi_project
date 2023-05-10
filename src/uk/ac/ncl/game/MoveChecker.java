@@ -116,12 +116,14 @@ public class MoveChecker {
             }
         }
 
-        if (darks == lights)
+        if (darks == lights) {
             return "The game is over. It is a draw. Each player has " + darks + " pieces";
-        String winner = darks <  lights ? "Dark" : "Light";
-        return "The game is over.
-                + winner + " has won with the result: Dark - " + darks + " Light - " + lights;
-    }
+        }
+        else {
+            String winner = darks < lights ? "Dark" : "Light";
+            return "The game is over.\n"
+                    + winner + " has won with the result: Dark - " + darks + " Light - " + lights;
+        }
 
     /**
      * Cleans up potential moves from the board cells

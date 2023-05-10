@@ -102,15 +102,15 @@ public class MoveChecker {
      *
      * @return string with the results of the game
      */
-    public String getFinalScore(){
+    public String getFinalScore() {
         int lights = 0;
         int darks = 0;
 
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (Cell cell : this.cells[row++]) {
-                if (cell.getValue() == CellStatus.DARK){
+                if (cell.getValue() == CellStatus.DARK) {
                     darks++;
-                } else if (cell.getValue() == CellStatus.LIGHT){
+                } else if (cell.getValue() == CellStatus.LIGHT) {
                     lights++;
                 }
             }
@@ -118,19 +118,21 @@ public class MoveChecker {
 
         if (darks == lights) {
             return "The game is over. It is a draw. Each player has " + darks + " pieces";
-        }
-        else {
+        } else {
             String winner = darks < lights ? "Dark" : "Light";
             return "The game is over.\n"
                     + winner + " has won with the result: Dark - " + darks + " Light - " + lights;
         }
 
-    /**
-     * Cleans up potential moves from the board cells
-     *
-     * @param grayCells - pieces with valid moves
-     */
-    public void removeMoves(ArrayList<Cell> grayCells){
+        /**
+         * Cleans up potential moves from the board cells
+         *
+         * @param grayCells - pieces with valid moves
+         */
+
+    }
+
+    public void removeMoves(ArrayList<Cell> grayCells) {
         if (grayCells == null)
             return;
         for (Cell cell : grayCells) {

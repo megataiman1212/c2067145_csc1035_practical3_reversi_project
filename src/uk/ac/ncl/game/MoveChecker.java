@@ -8,6 +8,7 @@ package uk.ac.ncl.game;
 import uk.ac.ncl.entity.CellStatus;
 import uk.ac.ncl.entity.DirectedMove;
 import uk.ac.ncl.entity.Cell;
+import uk.ac.ncl.entity.Move;
 
 import java.util.ArrayList;
 
@@ -35,11 +36,14 @@ public class MoveChecker {
     public Cell generateOpponent(CellStatus cellStatus) {
         ArrayList<Cell> potentialMoves = findPotentialMoves(cellStatus);
         Cell opponentsMove = null;
-        for (Cell cell : potentialMoves){
+        for (Cell cell : potentialMoves) {
+            Move move = cell.getMove();
+            if (move != null && move.getMoves().size() == 1 && move.getScore() == 1) {
                if (opponentsMove == null
                         || cell.getMove().getScore() > opponentsMove.getMove().getScore()) {
                    opponentsMove = cell;
                }
+            }
         }
         return opponentsMove;
     }

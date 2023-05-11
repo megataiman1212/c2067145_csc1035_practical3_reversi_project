@@ -97,6 +97,11 @@ public class Cell {
     }
 
     public Move getMove() {
+        if (move == null) {
+            ArrayList<DirectedMove> moves = new ArrayList<>();
+            moves.add(new DirectedMove(this, new int[]{0,0}));
+            move = new Move(moves, 0);
+        }
         return move;
     }
 

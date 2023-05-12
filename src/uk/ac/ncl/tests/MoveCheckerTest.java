@@ -39,7 +39,6 @@ class MoveCheckerTest {
     @Test
     void generateOpponentDark() {
         Cell cell = moveChecker.generateOpponent(CellStatus.DARK);
-
         assertTrue(cells[2][4] == cell || cells[3][5] == cell ||
                 cells[4][2] == cell || cells[5][3] == cell);
         assertTrue(cell.getMove() != null);
@@ -60,8 +59,9 @@ class MoveCheckerTest {
 
     @Test
     void flipCheckers() {
-        cells[5][3].isLegal(CellStatus.DARK, this.cells);
-        moveChecker.flipPieces(cells[5][3], CellStatus.DARK);
+        Cell cell = cells [5][3];
+        assertTrue(cell.isLegal(CellStatus.DARK, this.cells));
+        moveChecker.flipPieces(cell, CellStatus.DARK);
         assertTrue(cells[4][3].getValue() == CellStatus.DARK);
         assertTrue(cells[4][3].getMove() == null);
     }

@@ -37,13 +37,10 @@ public class MoveChecker {
         ArrayList<Cell> potentialMoves = findPotentialMoves(cellStatus);
         Cell opponentsMove = null;
         for (Cell cell : potentialMoves) {
-            Move move = cell.getMove();
-            if (move != null && move.getMoves().size() == 1 && move.getScore() == 1) {
-               if (opponentsMove == null
-                        || cell.getMove().getScore() > opponentsMove.getMove().getScore()) {
-                   opponentsMove = cell;
-               }
-            }
+           opponentsMove = opponentsMove == null
+                   || cell.getMove().getScore() > opponentsMove.getMove().getScore()
+                   ? cell
+                   : opponentsMove;
         }
         return opponentsMove;
     }
@@ -79,9 +76,9 @@ public class MoveChecker {
         ArrayList<Cell> potentialMoves = new ArrayList<Cell>();
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (Cell cell : this.cells[i]) {
-                if (cell.getValue() == CellStatus.EMPTY){
+                if (cell != null && cell.getValue() == CellStatus.EMPTY) {
                     if (cell.isLegal(colour, cells)){
-                        potentialMoves.remove(cell);
+                        potentialMoves.add(cell);
                     }
                 }
             }

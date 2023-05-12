@@ -69,7 +69,7 @@ public class Cell {
      *   Updates the status of the cell
      */
     public void setValue(CellStatus value) {
-        value = this.value;
+        this.value = value;
         switch (value){
             case EMPTY:
                 this.jButton.setBackground(new Color(820000));
@@ -97,8 +97,14 @@ public class Cell {
     }
 
     public Move getMove() {
+        if (move == null) {
+            ArrayList<DirectedMove> moves = new ArrayList<>();
+            moves.add(new DirectedMove(this, new int[]{0,0}));
+            move = new Move(moves, 0);
+        }
         return move;
     }
+
 
     public void setMove(Move move) {
         this.move = move;
@@ -126,13 +132,12 @@ public class Cell {
                 while (true){
                     cell = IsOnBoard(cell.row + dir[0],cell.column + dir[1]) ? cells[cell.row + dir[0]][cell.column + dir[1]] :  null;
                     temp_score += 1;
-                    if (!(cell != null
-                            && cell.getValue() != CellStatus.EMPTY)){
-                        if (cell.getValue() == colour) {
-                            score += temp_score;
+                    if (!(cell != null && cell.getValue() != CellStatus.EMPTY)){
+                        if (cell != null && cell.getValue() == colour && temp_score > 1) {
+                            score += temp_score - 1;
                             moves.add(new DirectedMove(cell, dir));
                         }
-                    } else {
+                    } else if (cell == null) {
                         break;
                     }
                 }

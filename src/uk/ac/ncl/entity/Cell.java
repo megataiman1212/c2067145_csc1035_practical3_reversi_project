@@ -129,7 +129,7 @@ public class Cell {
                     temp_score += 1;
                     if (cell != null && cell.getValue() != CellStatus.EMPTY){
                         if (cell.getValue() == colour) {
-                            score += temp_score - 1;
+                            score += temp_score;
                             moves.add(new DirectedMove(cell, dir));
                         }
                     } else {

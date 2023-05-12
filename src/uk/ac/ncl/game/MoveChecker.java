@@ -75,13 +75,12 @@ public class MoveChecker {
     public ArrayList<Cell> findPotentialMoves(CellStatus colour) {
         ArrayList<Cell> potentialMoves = new ArrayList<Cell>();
         for (int i = 0; i < BOARD_SIZE; i++) {
-            for (Cell cell : this.cells[i]) {
+            for (Cell cell : this.cells[i])
                 if (cell != null && cell.getValue() == CellStatus.EMPTY) {
                     if (cell.isLegal(colour, cells)){
                         potentialMoves.add(cell);
                     }
                 }
-            }
         }
         return potentialMoves;
     }
